@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>שוק עד הבית | הזמנה מהירה</title>
+    <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --green: #2E7D32;
+            --green-light: #4CAF50;
+            --orange: #FF7043;
+            --bg: #F7F9F7;
+            --white: #FFFFFF;
+            --text: #212121;
+            --text-light: #666;
+            --border: #E0E0E0;
+            --shadow: 0 4px 20px rgba(0,0,0,0.08);
+            --shadow-hover: 0 8px 30px rgba(0,0,0,0.14);
+            --radius: 16px;
+        }
+
+        body {
+            font-family: 'Heebo', sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 680px;
+            margin: 0 auto;
+            padding: 24px 16px 40px;
+        }
+
+        /* ── TOP HEADER ── */
+        .top-bar {
+            background: var(--green);
+            color: white;
+            text-align: center;
+            padding: 14px 20px;
+            font-size: 0.95rem;
+            font-weight: 600;
+            letter-spacing: 0.3px;
+        }
+
+        /* ── HERO ── */
+        .hero {
+            background: var(--white);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            padding: 32px 28px;
+            text-align: center;
+            margin-bottom: 20px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 5px;
+            background: linear-gradient(90deg, var(--green), var(--green-light), var(--orange));
+        }
+
+        .hero h1 {
+            font-size: 2rem;
+            font-weight: 800;
+            color: var(--green);
+            margin-bottom: 6px;
+        }
+
+        .hero .subtitle {
+            font-size: 1.05rem;
+            color: var(--text-light);
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+
+        .hero-badges {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .badge {
+            background: #F1F8F1;
+            color: var(--green);
+            border: 1.5px solid #C8E6C9;
+            border-radius: 50px;
+            padding: 6px 14px;
+            font-size: 0.88rem;
+            font-weight: 600;
+        }
+
+        /* ── FORM CARD ── */
+        .form-card {
+            background: var(--white);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            padding: 28px 24px;
+            margin-bottom: 20px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .form-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--green), var(--green-light));
+        }
+
+        .form-card h2 {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--green);
+            margin-bottom: 20px;
+        }
+
+        .field {
+            margin-bottom: 16px;
+        }
+
+        .field label {
+            display: block;
+            font-size: 0.92rem;
+            font-weight: 600;
+            color: var(--text);
+            margin-bottom: 7px;
+        }
+
+        .field input,
+        .field select,
+        .field textarea {
+            width: 100%;
+            padding: 13px 16px;
+            border: 2px solid var(--border);
+            border-radius: 12px;
+            font-size: 1rem;
+            font-family: inherit;
+            color: var(--text);
+            background: #FAFAFA;
+            transition: border-color 0.25s, box-shadow 0.25s, background 0.25s;
+            -webkit-appearance: none;
+        }
+
+        .field input:focus,
+        .field select:focus,
+        .field textarea:focus {
+            outline: none;
+            border-color: var(--green-light);
+            background: var(--white);
+            box-shadow: 0 0 0 4px rgba(76,175,80,0.12);
+        }
+
+        .field textarea {
+            height: 110px;
+            resize: vertical;
+            line-height: 1.6;
+        }
+
+        .field .req { color: #E53935; }
+
+        .two-col {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 14px;
+        }
+
+        /* Divider */
+        .divider {
+            border: none;
+            border-top: 1.5px solid #EEE;
+            margin: 20px 0;
+        }
+
+        /* ── SUBMIT ── */
+        .btn-submit {
+            width: 100%;
+            padding: 16px;
+            background: linear-gradient(135deg, var(--green) 0%, var(--green-light) 100%);
+            color: white;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: transform 0.25s, box-shadow 0.25s;
+            box-shadow: 0 6px 20px rgba(46,125,50,0.3);
+            margin-top: 8px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-submit:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 28px rgba(46,125,50,0.4);
+        }
+
+        .btn-submit:active {
+            transform: translateY(0);
+        }
+
+        .form-note {
+            text-align: center;
+            font-size: 0.85rem;
+            color: var(--text-light);
+            margin-top: 12px;
+            line-height: 1.5;
+        }
+
+        /* ── SUCCESS ── */
+        .success-msg {
+            display: none;
+            background: #E8F5E9;
+            border: 2px solid var(--green-light);
+            border-radius: var(--radius);
+            padding: 20px;
+            text-align: center;
+            margin-bottom: 16px;
+            animation: slideUp 0.5s ease;
+        }
+
+        .success-msg.show { display: block; }
+
+        .success-msg h3 {
+            color: var(--green);
+            font-size: 1.1rem;
+            margin-bottom: 6px;
+        }
+
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* ── WHATSAPP BUTTON ── */
+        .btn-whatsapp {
+            display: block;
+            text-align: center;
+            background: linear-gradient(135deg, #25D366, #128C7E);
+            color: white;
+            text-decoration: none;
+            padding: 15px 20px;
+            border-radius: 50px;
+            font-size: 1.05rem;
+            font-weight: 700;
+            box-shadow: 0 6px 20px rgba(37,211,102,0.3);
+            transition: transform 0.25s, box-shadow 0.25s;
+            margin-bottom: 20px;
+        }
+
+        .btn-whatsapp:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 28px rgba(37,211,102,0.4);
+        }
+
+        /* ── INFO STRIP ── */
+        .info-strip {
+            background: var(--white);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            padding: 20px 24px;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .info-item .icon { font-size: 1.6rem; margin-bottom: 5px; }
+        .info-item .label { font-size: 0.82rem; font-weight: 700; color: var(--green); }
+        .info-item .value { font-size: 0.8rem; color: var(--text-light); margin-top: 2px; }
+
+        /* ── FOOTER ── */
+        .footer {
+            text-align: center;
+            padding: 20px;
+            font-size: 0.85rem;
+            color: var(--text-light);
+        }
+
+        .footer a {
+            color: var(--green);
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        /* ── RESPONSIVE ── */
+        @media (max-width: 500px) {
+            .two-col { grid-template-columns: 1fr; }
+            .info-strip { grid-template-columns: 1fr; }
+            .hero h1 { font-size: 1.6rem; }
+        }
+
+        html { scroll-behavior: smooth; }
+    </style>
+</head>
+<body>
+
+    <!-- Top Bar -->
+    <div class="top-bar">
+        🚚 משלוח חינם מ-200₪ | ראשון-חמישי | שוק עד הבית 🍓
+    </div>
+
+    <div class="container">
+
+        <!-- Hero -->
+        <header class="hero">
+            <h1>🍓 שוק עד הבית</h1>
+            <p class="subtitle">
+                פירות וירקות ישירות מ-25 חקלאים מקומיים<br>
+                עד הבית - בלי סופרים, בלי תורים
+            </p>
+            <div class="hero-badges">
+                <span class="badge">🌱 ישירות מהחקלאים</span>
+                <span class="badge">🚚 משלוח חינם</span>
+                <span class="badge">✋ נבחר ביד</span>
+                <span class="badge">📅 תפריט כל ב' + ד'</span>
+            </div>
+        </header>
+
+        <!-- WhatsApp CTA -->
+        <a href="https://chat.whatsapp.com/EkvtzcgUBYqIrGDwuLD7ux?s=cl&p=a&mlu=4" class="btn-whatsapp">
+            💬 הצטרפו לקבוצת הוואטסאפ לתפריט השבועי
+        </a>
+
+        <!-- Info Strip -->
+        <div class="info-strip">
+            <div class="info-item">
+                <div class="icon">📅</div>
+                <div class="label">תפריט</div>
+                <div class="value">כל שני ורביעי</div>
+            </div>
+            <div class="info-item">
+                <div class="icon">🚚</div>
+                <div class="label">משלוח</div>
+                <div class="value">ראשון-חמישי חינם</div>
+            </div>
+            <div class="info-item">
+                <div class="icon">💰</div>
+                <div class="label">מינימום</div>
+                <div class="value">200₪ בלבד</div>
+            </div>
+        </div>
+
+        <!-- Order Form -->
+        <div class="form-card" id="order-form">
+            <h2>📋 טופס הזמנה</h2>
+
+            <div class="success-msg" id="successMsg">
+                <h3>✅ ההזמנה נשלחה בהצלחה!</h3>
+                <p>ניצור איתך קשר תוך מספר שעות לאישור ותאום משלוח</p>
+            </div>
+
+            <form id="orderForm">
+
+                <!-- פרטים אישיים -->
+                <div class="two-col">
+                    <div class="field">
+                        <label>שם מלא <span class="req">*</span></label>
+                        <input type="text" name="fullName" id="fullName" placeholder="ישראל ישראלי" required>
+                    </div>
+                    <div class="field">
+                        <label>טלפון <span class="req">*</span></label>
+                        <input type="tel" name="phone" id="phone" placeholder="05X-XXXXXXX" required>
+                    </div>
+                </div>
+
+                <hr class="divider">
+
+                <!-- אזור -->
+                <div class="field">
+                    <label>אזור משלוח <span class="req">*</span></label>
+                    <select name="area" id="area" required>
+                        <option value="">בחרו עיר ואזור...</option>
+                        <optgroup label="🏙️ הרצליה">
+                            <option value="הרצליה מרכז">הרצליה מרכז</option>
+                            <option value="הרצליה פיתוח">הרצליה פיתוח</option>
+                            <option value="נוה ישראל הרצליה">נוה ישראל</option>
+                        </optgroup>
+                        <optgroup label="🏙️ כפר סבא">
+                            <option value="כפר סבא מרכז">כפר סבא מרכז</option>
+                            <option value="כפר סבא צפון">כפר סבא צפון</option>
+                            <option value="כפר סבא דרום">כפר סבא דרום</option>
+                            <option value="רמות כפר סבא">רמות</option>
+                        </optgroup>
+                        <optgroup label="🏙️ תל אביב">
+                            <option value="רמת החייל">רמת החייל</option>
+                            <option value="בבלי">בבלי</option>
+                            <option value="שיכון דן">שיכון דן</option>
+                            <option value="לוינסקי">ל (לוינסקי)</option>
+                            <option value="רמת אביב">רמת אביב</option>
+                            <option value="כוכב הצפון">כוכב הצפון</option>
+                            <option value="משתלה">משתלה</option>
+                            <option value="מעוז אביב">מעוז אביב</option>
+                            <option value="הדר יוסף">הדר יוסף</option>
+                            <option value="רמת אפעל">רמת אפעל</option>
+                        </optgroup>
+                        <option value="אחר">אחר (יפורט בהערות)</option>
+                    </select>
+                </div>
+
+                <!-- כתובת -->
+                <div class="field">
+                    <label>כתובת מלאה <span class="req">*</span></label>
+                    <input type="text" name="address" id="address" placeholder="רחוב, מספר בית, קומה, דירה" required>
+                </div>
+
+                <hr class="divider">
+
+                <!-- הזמנה -->
+                <div class="field">
+                    <label>מה תרצו להזמין? <span class="req">*</span></label>
+                    <textarea name="orderDetails" id="orderDetails" placeholder="לדוגמה: תות שדה, עגבניות שרי 1 ק&quot;ג, בננות, פלפלים..." required></textarea>
+                </div>
+
+                <!-- הערות -->
+                <div class="field">
+                    <label>הערות נוספות</label>
+                    <input type="text" name="notes" id="notes" placeholder="בקשות מיוחדות, הוראות גישה...">
+                </div>
+
+                <button type="submit" class="btn-submit">
+                    שליחת הזמנה לוואטסאפ 📲
+                </button>
+                <p class="form-note">
+                    ההזמנה תישלח ישירות בוואטסאפ · אייל ושי יחזרו אליכם לאישור ותשלום
+                </p>
+
+            </form>
+        </div>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p>שוק עד הבית | אייל ושי</p>
+            <p style="margin-top:6px;">
+                <a href="https://chat.whatsapp.com/EkvtzcgUBYqIrGDwuLD7ux?s=cl&p=a&mlu=4">קבוצת וואטסאפ</a>
+                &nbsp;·&nbsp;
+                <a href="https://eyalbaja97.github.io/Eyal/">האתר שלנו</a>
+            </p>
+        </footer>
+
+    </div>
+
+    <script>
+        document.getElementById('orderForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            const name    = document.getElementById('fullName').value.trim();
+            const phone   = document.getElementById('phone').value.trim();
+            const area    = document.getElementById('area').value;
+            const address = document.getElementById('address').value.trim();
+            const order   = document.getElementById('orderDetails').value.trim();
+            const notes   = document.getElementById('notes').value.trim();
+
+            if (!name || !phone || !area || !address || !order) {
+                alert('אנא מלאו את כל השדות החובה (*)');
+                return;
+            }
+
+            const msg = `
+🍓 הזמנה חדשה - שוק עד הבית
+
+👤 שם: ${name}
+📞 טלפון: ${phone}
+📍 אזור: ${area}
+🏠 כתובת: ${address}
+
+🛒 הזמנה:
+${order}
+${notes ? `\n💬 הערות: ${notes}` : ''}
+
+📅 ${new Date().toLocaleDateString('he-IL')} | ${new Date().toLocaleTimeString('he-IL')}
+            `.trim();
+
+            // Send to Make.com webhook
+            const webhookUrl = 'https://hook.eu1.make.com/4z9e6dj3sdxmt57ziseo17eqjzf65tz2';
+
+            const submitBtn = document.querySelector('.btn-submit');
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'שולח...';
+
+            try {
+                fetch(webhookUrl, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        fullName: name,
+                        phone: phone,
+                        area: area,
+                        address: address,
+                        orderDetails: order,
+                        notes: notes || '',
+                        submittedAt: new Date().toISOString()
+                    })
+                }).then(() => {
+                    document.getElementById('successMsg').classList.add('show');
+                    document.getElementById('orderForm').reset();
+                    submitBtn.disabled = false;
+                    submitBtn.textContent = 'שליחת הזמנה לוואטסאפ 📲';
+
+                    setTimeout(() => {
+                        window.open(`https://wa.me/972507412191?text=${encodeURIComponent(msg)}`, '_blank');
+                    }, 1200);
+                }).catch(err => {
+                    console.error('Webhook error:', err);
+                    // Even if webhook fails, still send WhatsApp message
+                    document.getElementById('successMsg').classList.add('show');
+                    document.getElementById('orderForm').reset();
+                    submitBtn.disabled = false;
+                    submitBtn.textContent = 'שליחת הזמנה לוואטסאפ 📲';
+
+                    setTimeout(() => {
+                        window.open(`https://wa.me/972507412191?text=${encodeURIComponent(msg)}`, '_blank');
+                    }, 1200);
+                });
+            } catch (err) {
+                console.error('Error:', err);
+                submitBtn.disabled = false;
+                submitBtn.textContent = 'שליחת הזמנה לוואטסאפ 📲';
+            }
+        });
+
+        // Phone formatting
+        document.getElementById('phone').addEventListener('input', function() {
+            let v = this.value.replace(/\D/g, '');
+            if (v.startsWith('972')) v = '0' + v.slice(3);
+            if (v.length > 10) v = v.slice(0, 10);
+            this.value = v;
+        });
+    </script>
+</body>
+</html>
