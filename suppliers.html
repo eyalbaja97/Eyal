@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>הרשמת ספקים | אירועי חברה</title>
+<link href="https://fonts.googleapis.com/css2?family=Amatic+SC:wght@700&family=Assistant:wght@300;400;600;700&display=swap" rel="stylesheet">
+<script src="forms-config.js"></script>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--display:'Amatic SC',cursive;--text:#1F2A1C;--label:#55624F;--muted:#8C9786;--ph:#B5BDAF;--accent:#3E7B3A;--bg:#EEF2E6}
+body{font-family:'Assistant',sans-serif;background:var(--bg);color:var(--text);line-height:1.6;overflow-x:hidden}
+.hero{background:linear-gradient(160deg,#3E7B3A,#24502A);color:#F4F8EE;padding:52px 24px 110px;text-align:center}
+.hero .k{display:inline-block;background:rgba(255,255,255,.14);border-radius:999px;padding:5px 16px;font-size:.85rem;letter-spacing:2px;margin-bottom:16px}
+.hero h1{font-family:var(--display);font-size:clamp(3.2rem,12vw,5rem);line-height:.95;letter-spacing:1px}
+.hero p{max-width:480px;margin:16px auto 0;opacity:.9;font-weight:300;font-size:1.08rem}
+.chips{display:flex;justify-content:center;gap:10px;flex-wrap:wrap;margin-top:22px}
+.chips span{background:#F4F8EE;color:var(--accent);border-radius:999px;padding:6px 14px;font-weight:600;font-size:.88rem}
+.card{max-width:620px;margin:-70px auto 40px;background:#fff;border-radius:20px;padding:36px 30px;box-shadow:0 20px 50px -20px rgba(30,60,30,.3);position:relative}
+.form-head{margin-bottom:28px}
+.form-head .step{font-size:.78rem;letter-spacing:3px;font-weight:700;color:var(--accent);margin-bottom:6px}
+.form-head h2{font-family:var(--display);font-size:2.6rem;font-weight:700;color:var(--accent);line-height:1.1}
+.form-head p{color:var(--label)}
+.field{margin-bottom:24px}
+.field>label,.field>.label{display:block;font-size:.85rem;font-weight:600;margin-bottom:8px;color:var(--label)}
+.req{color:var(--accent)}
+.hint{font-weight:400;color:var(--muted)}
+.field input[type=text],.field input[type=tel],.field input[type=email],.field select,.field textarea{width:100%;font:inherit;font-size:1.02rem;color:var(--text);background-color:#F6F8F2;border:2px solid #E1E7D9;border-radius:12px;padding:12px 15px;-webkit-appearance:none;appearance:none;transition:border-color .2s,background .2s}
+.field input::placeholder,.field textarea::placeholder{color:var(--ph)}
+.field input:focus,.field select:focus,.field textarea:focus{outline:none;border-color:var(--accent);background-color:#fff}
+.field select{cursor:pointer;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23999' stroke-width='1.5' fill='none'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:left 14px center;padding-left:36px}
+.field textarea{min-height:88px;resize:vertical}
+.row{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.tags{display:flex;flex-wrap:wrap;gap:8px}
+.tag{position:relative}
+.tag input{position:absolute;opacity:0;pointer-events:none;width:1px;height:1px;top:0;right:0;margin:0}
+.tag>span{display:inline-block;padding:8px 15px;font-size:.95rem;cursor:pointer;user-select:none;transition:all .18s;background:#F6F8F2;border:2px solid #E1E7D9;border-radius:12px;color:var(--label);font-weight:600}
+.tag input:checked+span{background:#E3F0DF;border-color:var(--accent);color:var(--accent)}
+.tag input:focus-visible+span{outline:2px solid var(--accent);outline-offset:2px}
+.consent{display:flex;gap:12px;align-items:flex-start;font-size:.9rem;line-height:1.5;margin:6px 0 24px;cursor:pointer;color:var(--label)}
+.consent input{width:18px;height:18px;margin-top:2px;accent-color:var(--accent);flex-shrink:0}
+.btn-submit{width:100%;padding:16px;border:none;border-radius:14px;background:var(--accent);color:#fff;font:inherit;font-size:1.1rem;font-weight:700;cursor:pointer;transition:background .2s}
+.btn-submit:hover{background:#2F6A2C}
+.btn-submit:disabled{opacity:.6;cursor:default}
+.form-note{text-align:center;font-size:.85rem;color:var(--muted);margin-top:12px}
+.error-msg{display:none;color:#C0392B;font-size:.92rem;text-align:center;margin-top:12px}
+.error-msg.show{display:block}
+.success-msg{display:none;text-align:center;padding:34px 10px}
+.success-msg.show{display:block}
+.success-msg .bar{width:52px;height:4px;border-radius:2px;background:var(--accent);margin:0 auto 22px}
+.success-msg h3{font-family:var(--display);font-size:2.6rem;color:var(--accent);line-height:1.1;margin-bottom:8px}
+.success-msg p{color:var(--label);line-height:1.7}
+.wa{display:inline-block;margin-top:22px;padding:13px 24px;border:2px solid var(--accent);border-radius:12px;color:var(--accent);font-weight:700;text-decoration:none}
+.wa:hover{background:var(--accent);color:#fff}
+footer{text-align:center;color:var(--muted);font-size:.85rem;padding-bottom:36px}
+@media(max-width:480px){.card{margin:-70px 12px 30px;padding:28px 20px}.row{grid-template-columns:1fr;gap:0}}
+</style>
+</head>
+<body>
+
+<header class="hero">
+ <div class="k">הרשמת ספקים</div>
+ <h1>מחפשים ספקים<br>לאירועי חברה</h1>
+ <p>נפתח מקום חדש, ואנחנו בונים רשימת ספקים לאירועי חברה ולאירועים פרטיים. השאירו פרטים ונחזור אליכם.</p>
+ <div class="chips"><span>אירועי חברה</span><span>עבודה לטווח ארוך</span><span>שיתוף פעולה</span></div>
+</header>
+
+<main class="card">
+ <section id="formCard">
+ <div class="form-head">
+ <div class="step">פרטי העסק</div>
+ <h2>בואו נכיר</h2>
+ <p>מילוי הטופס לוקח כדקה.</p>
+ </div>
+
+ <form id="f" novalidate>
+ <div class="field">
+ <label for="business">שם העסק <span class="req">*</span></label>
+ <input type="text" id="business" placeholder="שם העסק">
+ </div>
+
+ <div class="row">
+ <div class="field">
+ <label for="contact">איש קשר <span class="req">*</span></label>
+ <input type="text" id="contact" autocomplete="name" placeholder="שם מלא">
+ </div>
+ <div class="field">
+ <label for="phone">טלפון <span class="req">*</span></label>
+ <input type="tel" id="phone" inputmode="numeric" autocomplete="tel" placeholder="050-0000000">
+ </div>
+ </div>
+
+ <div class="field">
+ <label for="email">אימייל</label>
+ <input type="email" id="email" autocomplete="email" placeholder="name@business.co.il">
+ </div>
+
+ <div class="field">
+ <span class="label">תחום <span class="req">*</span> <span class="hint">· אפשר לבחור כמה</span></span>
+ <div class="tags">
+ <label class="tag"><input type="checkbox" name="cat" value="קייטרינג ושפים"><span>קייטרינג ושפים</span></label>
+ <label class="tag"><input type="checkbox" name="cat" value="בר וברמנים"><span>בר וברמנים</span></label>
+ <label class="tag"><input type="checkbox" name="cat" value="עגלות קפה"><span>עגלות קפה</span></label>
+ <label class="tag"><input type="checkbox" name="cat" value="DJ, הגברה ותאורה"><span>DJ, הגברה ותאורה</span></label>
+ <label class="tag"><input type="checkbox" name="cat" value="אמנים, מנחים ומפעילים"><span>אמנים, מנחים ומפעילים</span></label>
+ <label class="tag"><input type="checkbox" name="cat" value="אטרקציות וגיבוש"><span>אטרקציות וגיבוש</span></label>
+ <label class="tag"><input type="checkbox" name="cat" value="סדנאות וריטריטים"><span>סדנאות וריטריטים</span></label>
+ <label class="tag"><input type="checkbox" name="cat" value="עיצוב ובלונים"><span>עיצוב ובלונים</span></label>
+ <label class="tag"><input type="checkbox" name="cat" value="צילום ווידאו"><span>צילום ווידאו</span></label>
+ <label class="tag"><input type="checkbox" name="cat" value="השכרת ציוד וריהוט"><span>השכרת ציוד וריהוט</span></label>
+ <label class="tag"><input type="checkbox" name="cat" value="מתנות לעובדים ומיתוג"><span>מתנות לעובדים ומיתוג</span></label>
+ <label class="tag"><input type="checkbox" name="cat" value="הסעות"><span>הסעות</span></label>
+ <label class="tag"><input type="checkbox" name="cat" value="אחר"><span>אחר</span></label>
+ </div>
+ </div>
+
+ <div class="field">
+ <label for="products">מה אתם מציעים? <span class="req">*</span></label>
+ <textarea id="products" placeholder="ספרו בקצרה על השירות, למשל: סדנאות צוות וריטריטים לחברות, עד 80 משתתפים"></textarea>
+ </div>
+
+ <div class="row">
+ <div class="field">
+ <label for="area">אזור פעילות <span class="req">*</span></label>
+ <select id="area">
+ <option value="">בחרו אזור</option>
+ <option value="כל הארץ">כל הארץ</option>
+ <option value="השרון">השרון</option>
+ <option value="תל אביב והמרכז">תל אביב והמרכז</option>
+ <option value="השפלה">השפלה</option>
+ <option value="ירושלים והסביבה">ירושלים והסביבה</option>
+ <option value="חיפה והקריות">חיפה והקריות</option>
+ <option value="הצפון">הצפון</option>
+ <option value="הדרום">הדרום</option>
+ <option value="יהודה ושומרון">יהודה ושומרון</option>
+ </select>
+ </div>
+ <div class="field">
+ <label for="experience">ניסיון באירועי חברה</label>
+ <select id="experience">
+ <option value="">בחרו</option>
+ <option value="הרבה ניסיון">הרבה ניסיון</option>
+ <option value="קצת ניסיון">קצת ניסיון</option>
+ <option value="עוד לא, אבל מעוניינים">עוד לא, אבל מעוניינים</option>
+ </select>
+ </div>
+ </div>
+
+ <div class="row">
+ <div class="field">
+ <label for="kosher">כשרות <span class="hint">· לאוכל ומשקאות</span></label>
+ <select id="kosher">
+ <option value="">בחרו</option>
+ <option value="כשר">כשר</option>
+ <option value="כשר למהדרין">כשר למהדרין</option>
+ <option value="לא כשר">לא כשר</option>
+ <option value="לא רלוונטי לתחום שלי">לא רלוונטי לתחום שלי</option>
+ </select>
+ </div>
+ <div class="field">
+ <label for="meetTime">מתי נוח לפגישה?</label>
+ <select id="meetTime">
+ <option value="">בחרו</option>
+ <option value="בוקר">בוקר</option>
+ <option value="צהריים">צהריים</option>
+ <option value="אחר הצהריים">אחר הצהריים</option>
+ <option value="גמיש">גמיש</option>
+ </select>
+ </div>
+ </div>
+
+ <div class="field">
+ <label for="website">אתר או רשתות חברתיות</label>
+ <input type="text" id="website" placeholder="קישור לעמוד העסק">
+ </div>
+
+ <div class="field">
+ <label for="notes">משהו נוסף שחשוב לדעת?</label>
+ <textarea id="notes" placeholder="טווח מחירים, גודל אירועים, זמינות"></textarea>
+ </div>
+
+ <label class="consent">
+ <input type="checkbox" id="consent">
+ <span>אני מאשר/ת שתיצרו איתי קשר בטלפון, בוואטסאפ או במייל <span class="req">*</span></span>
+ </label>
+
+ <button type="submit" class="btn-submit" id="submitBtn">שליחת פרטים</button>
+ <div class="error-msg" id="errorMsg"></div>
+ <p class="form-note">נחזור אליכם בהקדם</p>
+ </form>
+ </section>
+
+ <section class="success-msg" id="successMsg">
+ <div class="bar"></div>
+ <h3>תודה, קיבלנו</h3>
+ <p>הפרטים נשמרו אצלנו.<br>נחזור אליכם בקרוב.</p>
+ <a class="wa" href="https://chat.whatsapp.com/EkMFBUW3qyV9jX6An1vRGs" target="_blank" rel="noopener">הצטרפות לקבוצת הספקים בוואטסאפ</a>
+ </section>
+</main>
+
+<footer>הרשמת ספקים · אירועי חברה ואירועים פרטיים</footer>
+
+<script>
+ const WEBHOOK_URL = (window.FORMS_URLS && window.FORMS_URLS.suppliers) || 'https://script.google.com/macros/s/AKfycbxP9HAqHUOl5yIoXIQbH_mu972puGQ5UtJcwx1ollYx_rEyU4__ShElhGpHAebc4lua/exec';
+ const form = document.getElementById('f');
+ const errorMsg = document.getElementById('errorMsg');
+ const btn = document.getElementById('submitBtn');
+ const val = id => document.getElementById(id).value.trim();
+ function showError(t) { errorMsg.textContent = t; errorMsg.classList.add('show'); }
+
+ document.getElementById('phone').addEventListener('input', function () {
+ let v = this.value.replace(/\D/g, '');
+ if (v.startsWith('972')) v = '0' + v.slice(3);
+ this.value = v.slice(0, 10);
+ });
+
+ form.addEventListener('submit', async function (e) {
+ e.preventDefault();
+ errorMsg.classList.remove('show');
+ const cats = [...form.querySelectorAll('input[name="cat"]:checked')].map(el => el.value);
+ const d = {
+ formType: 'suppliers',
+ business: val('business'), contact: val('contact'), phone: val('phone'), email: val('email'),
+ categories: cats.join(', '), products: val('products'), area: val('area'), kosher: val('kosher'),
+ delivery: val('experience'), website: val('website'), meetTime: val('meetTime'), notes: val('notes'),
+ submittedAt: new Date().toLocaleString('he-IL', { timeZone: 'Asia/Jerusalem' })
+ };
+ if (!d.business || !d.contact || !d.phone || !cats.length || !d.products || !d.area) { showError('אנא מלאו את כל שדות החובה (*)'); return; }
+ if (!/^0\d{8,9}$/.test(d.phone)) { showError('מספר הטלפון לא תקין'); return; }
+ if (d.email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(d.email)) { showError('כתובת האימייל לא תקינה'); return; }
+ if (!document.getElementById('consent').checked) { showError('יש לאשר יצירת קשר'); return; }
+ if (!WEBHOOK_URL || WEBHOOK_URL.indexOf('PASTE_') === 0) { showError('הטופס עדיין לא מחובר לגיליון'); return; }
+
+ btn.disabled = true; btn.textContent = 'שולח...';
+ try {
+ await fetch(WEBHOOK_URL, { method: 'POST', mode: 'no-cors', headers: { 'Content-Type': 'text/plain;charset=utf-8' }, body: JSON.stringify(d) });
+ document.getElementById('formCard').style.display = 'none';
+ document.getElementById('successMsg').classList.add('show');
+ document.getElementById('successMsg').scrollIntoView({ behavior: 'smooth', block: 'center' });
+ } catch (err) {
+ showError('משהו השתבש בשליחה. נסו שוב בעוד רגע.');
+ btn.disabled = false; btn.textContent = 'שליחת פרטים';
+ }
+ });
+</script>
+</body>
+</html>
