@@ -5,7 +5,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>הרשמת ספקים | אירועי חברה</title>
 <link href="https://fonts.googleapis.com/css2?family=Amatic+SC:wght@700&family=Assistant:wght@300;400;600;700&display=swap" rel="stylesheet">
-<script src="forms-config.js"></script>
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
 :root{--display:'Amatic SC',cursive;--text:#1F2A1C;--label:#55624F;--muted:#8C9786;--ph:#B5BDAF;--accent:#3E7B3A;--bg:#EEF2E6}
@@ -201,7 +200,7 @@ footer{text-align:center;color:var(--muted);font-size:.85rem;padding-bottom:36px
 <footer>הרשמת ספקים · אירועי חברה ואירועים פרטיים</footer>
 
 <script>
- const WEBHOOK_URL = (window.FORMS_URLS && window.FORMS_URLS.suppliers) || 'https://script.google.com/macros/s/AKfycbxP9HAqHUOl5yIoXIQbH_mu972puGQ5UtJcwx1ollYx_rEyU4__ShElhGpHAebc4lua/exec';
+ const WEBHOOK_URL = 'https://script.google.com/macros/s/AKfycbxP9HAqHUOl5yIoXIQbH_mu972puGQ5UtJcwx1ollYx_rEyU4__ShElhGpHAebc4lua/exec';
  const form = document.getElementById('f');
  const errorMsg = document.getElementById('errorMsg');
  const btn = document.getElementById('submitBtn');
